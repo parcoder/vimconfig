@@ -10,7 +10,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'stamblerre/gocode'
 Plug 'dense-analysis/ale'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'ajh17/spacegray.vim'
+Plug 'danilo-augusto/vim-afterglow'
 call plug#end()
 
 
@@ -54,8 +54,12 @@ let g:go_def_mode='gopls'
 let g:go_info_mode='gopls'
 
 " activamos los colores molokai esta bien lindo pero se puede cambiar a placer
+
 syntax enable
-colorscheme spacegray 
+colorscheme afterglow 
+
+let g:afterglow_blackout = 1
+let g:airline_theme="afterglow'
 
 " mostramos los numeros en las lineas 1 2 3 4 ...
 set number
@@ -142,7 +146,7 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
-nmap <F6> :NERDTreeToggle<CR>
+nmap <C-n> :NERDTreeToggle<CR>
 
 " Use U to show documentation in preview window
 nnoremap <silent> U :call <SID>show_documentation()<CR>
