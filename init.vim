@@ -10,7 +10,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'stamblerre/gocode'
 Plug 'dense-analysis/ale'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'danilo-augusto/vim-afterglow'
+Plug 'morhetz/gruvbox'
 call plug#end()
 
 
@@ -56,10 +56,16 @@ let g:go_info_mode='gopls'
 " activamos los colores molokai esta bien lindo pero se puede cambiar a placer
 
 syntax enable
-colorscheme afterglow 
+colorscheme gruvbox 
 
-let g:afterglow_blackout = 1
-let g:airline_theme="afterglow'
+if has('nvim')
+	Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+	Plug 'Shougo/denite.nvim'
+	Plug 'roxma/nvim-yarp'
+	Plug 'roxma/vim-hug-neovim-rpc'
+endif
+
 
 " mostramos los numeros en las lineas 1 2 3 4 ...
 set number
