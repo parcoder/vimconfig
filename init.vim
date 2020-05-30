@@ -58,14 +58,6 @@ let g:go_info_mode='gopls'
 syntax enable
 colorscheme gruvbox 
 
-if has('nvim')
-	Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-	Plug 'Shougo/denite.nvim'
-	Plug 'roxma/nvim-yarp'
-	Plug 'roxma/vim-hug-neovim-rpc'
-endif
-
 
 " mostramos los numeros en las lineas 1 2 3 4 ...
 set number
