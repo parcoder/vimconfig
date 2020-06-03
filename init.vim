@@ -1,108 +1,64 @@
-call plug#begin()
-Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries', 'for': 'go' }
-Plug 'tpope/vim-surround'
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-Plug 'sheerun/vim-polyglot'
-Plug 'PProvost/vim-ps1'
-Plug 'tomasr/molokai'
+call plug#begin('~/.config/nvim/plugged')
+
+Plug 'fatih/vim-go'
+Plug 'neoclide/coc.nvim', {'branch':'release'}
+Plug 'NLKNguyen/papercolor-theme'
 Plug 'vim-airline/vim-airline'
-Plug 'tpope/vim-fugitive'
-Plug 'stamblerre/gocode'
-Plug 'dense-analysis/ale'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'morhetz/gruvbox'
 call plug#end()
 
-
-
-" con esto se agregan los json tags a las estructuras
-let g:go_addtags_transform = "snakecase"
-
-" si los tooltips salen sin color activar esto para corregir es un error de gtk? 
-" GuiPopupmenu 0
-
-" " Copy to clipboard
-vnoremap  <leader>y  "+y
-nnoremap  <leader>Y  "+yg_
-nnoremap  <leader>y  "+y
-nnoremap  <leader>yy  "+yy
-
-" " Paste from clipboard
-nnoremap <leader>p "+p
-nnoremap <leader>P "+P
-vnoremap <leader>p "+p
-vnoremap <leader>P "+P
-
-" esto corrige un molesto problema con gopls 
-let g:go_auto_sameids = 1
-let g:go_auto_info = 1
-
-" -------------------------------------------------------------------------------------------------
-" CONFIGURACIONES CASERAS
-" -------------------------------------------------------------------------------------------------
-" con esto arrancamos nerdtree al inicio
-autocmd VimEnter * NERDTree
-
-autocmd VimEnter * GuiPopupmenu 0
-
-
-" con esto hacemos que nerdtree muestre los bookmarks al arrancar
-let NERDTreeShowBookmarks=2
-
-" activamos gopls para el sistema
-let g:go_def_mode='gopls'
-let g:go_info_mode='gopls'
-
-" activamos los colores molokai esta bien lindo pero se puede cambiar a placer
-
-syntax enable
-colorscheme gruvbox 
-
-
-" mostramos los numeros en las lineas 1 2 3 4 ...
+set t_Co=256
 set number
-" con esto mostramos las lineas verticales cuando se tabula para sevir de guía
+set background=dark
+set cursorline
+colorscheme PaperColor
 
-set listchars=tab:\|\ 
-set list
-
-" montamos 4 espacios de TAB
-au FileType go set noexpandtab
-au FileType go set shiftwidth=4
-au FileType go set softtabstop=4
-au FileType go set tabstop=4
-
-" Habilitamos muchas modalidades de colores en vim-go
-let g:go_highlight_build_constraints = 1
-let g:go_highlight_extra_types = 1
-let g:go_highlight_fields = 1
-let g:go_highlight_functions = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_structs = 1
-let g:go_highlight_types = 1
-let g:go_auto_sameids = 1
-
-" Con esto procesamos el archivo al momento de guardar genera elformato y agrega los imports faltantes si hay alguno
-let g:go_fmt_command = "goimports"
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1
 
 
-" Error and warning signs.
-let g:ale_sign_error = '⤫'
-let g:ale_sign_warning = '⚠'" Enable integration with airline.
-let g:airline#extensions#ale#enabled = 1
+  if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+  endif
 
-" ir a declaraciones
-au FileType go nmap <leader>gt :GoDeclsDir<cr>
+  " unicode symbols
+  let g:airline_left_sep = '»'
+  let g:airline_left_sep = '▶'
+  let g:airline_right_sep = '«'
+  let g:airline_right_sep = '◀'
+  let g:airline_symbols.crypt = '🔒'
+  let g:airline_symbols.linenr = '☰'
+  let g:airline_symbols.linenr = '␊'
+  let g:airline_symbols.linenr = '␤'
+  let g:airline_symbols.linenr = '¶'
+  let g:airline_symbols.maxlinenr = ''
+  let g:airline_symbols.maxlinenr = '㏑'
+  let g:airline_symbols.branch = '⎇'
+  let g:airline_symbols.paste = 'ρ'
+  let g:airline_symbols.paste = 'Þ'
+  let g:airline_symbols.paste = '∥'
+  let g:airline_symbols.spell = 'Ꞩ'
+  let g:airline_symbols.notexists = 'Ɇ'
+  let g:airline_symbols.whitespace = 'Ξ'
 
-" Muestra el tipo de dato en el que trabajamos en la barra de tareas
-let g:go_auto_type_info = 1
+  " powerline symbols
+  let g:airline_left_sep = ''
+  let g:airline_left_alt_sep = ''
+  let g:airline_right_sep = '►'
+  let g:airline_right_alt_sep = '►'
+  let g:airline_symbols.branch = ''
+  let g:airline_symbols.readonly = ''
+  let g:airline_symbols.linenr = '☰'
+  let g:airline_symbols.maxlinenr = ''
+  let g:airline_symbols.dirty='⚡'
 
-" IR A DEFINICION CON F12
-au FileType go nmap <F12> <Plug>(go-def)
-
-" automatically install coc extensions if they're missing
-let g:coc_global_extensions=[ 'coc-powershell', 'coc-python' , 'coc-yaml']
+  " old vim-powerline symbols
+  let g:airline_left_sep = '►'
+  let g:airline_left_alt_sep = '►'
+  let g:airline_right_sep = '◄'
+  let g:airline_right_alt_sep = '◄'
+  let g:airline_symbols.branch = '|-♦'
+  let g:airline_symbols.readonly = '⭤'
+  let g:airline_symbols.linenr = '⭡'
 
 " -------------------------------------------------------------------------------------------------
 " coc.nvim default settings
@@ -144,7 +100,6 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
-nmap <C-n> :NERDTreeToggle<CR>
 
 " Use U to show documentation in preview window
 nnoremap <silent> U :call <SID>show_documentation()<CR>
@@ -172,17 +127,7 @@ nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
-"*****************************************************************************
-"" Abbreviations
-"*****************************************************************************
-"" no one is really happy until you have this shortcuts
-cnoreabbrev W! w!
-cnoreabbrev Q! q!
-cnoreabbrev Qall! qall!
-cnoreabbrev Wq wq
-cnoreabbrev Wa wa
-cnoreabbrev wQ wq
-cnoreabbrev WQ wq
-cnoreabbrev W w
-cnoreabbrev Q q
-cnoreabbrev Qall qall
+
+
+
+
