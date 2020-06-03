@@ -1,9 +1,12 @@
+
 call plug#begin('~/.config/nvim/plugged')
 
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'fatih/vim-go'
 Plug 'neoclide/coc.nvim', {'branch':'release'}
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'vim-airline/vim-airline'
+
 call plug#end()
 
 set t_Co=256
@@ -11,6 +14,9 @@ set number
 set background=dark
 set cursorline
 colorscheme PaperColor
+
+let NERDTreeShowBookmarks=2
+nmap <C-n> :NERDTreeToggle<CR>
 
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
