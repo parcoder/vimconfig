@@ -16,6 +16,8 @@ set number
 set background=dark
 set cursorline
 
+filetype plugin on
+set omnifunc=syntaxcomplete#Complete
 filetype indent on
 set filetype=html
 set smartindent
