@@ -6,6 +6,8 @@ Plug 'fatih/vim-go'
 Plug 'neoclide/coc.nvim', {'branch':'release'}
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'vim-airline/vim-airline'
+Plug 'mattn/emmet-vim'
+Plug 'maksimr/vim-jsbeautify'
 
 call plug#end()
 
@@ -13,10 +15,17 @@ set t_Co=256
 set number
 set background=dark
 set cursorline
+
+filetype indent on
+set filetype=html
+set smartindent
+
 colorscheme PaperColor
 
 let NERDTreeShowBookmarks=2
 nmap <C-n> :NERDTreeToggle<CR>
+
+set omnifunc=htmlcomplete#CompleteTags
 
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
@@ -25,7 +34,6 @@ let g:go_fmt_command = "goimports"
 
   if !exists('g:airline_symbols')
     let g:airline_symbols = {}
-  endif
 
   " unicode symbols
   let g:airline_left_sep = '»'
@@ -59,11 +67,12 @@ let g:go_fmt_command = "goimports"
   let g:airline_symbols.dirty='⚡'
 
   " old vim-powerline symbols
+  let g:airline_left_sep = '»'
   let g:airline_left_sep = '►'
   let g:airline_left_alt_sep = '►'
   let g:airline_right_sep = '◄'
   let g:airline_right_alt_sep = '◄'
-  let g:airline_symbols.branch = '|-♦'
+  let g:airline_symbols.branch = '⎇'
   let g:airline_symbols.readonly = '⭤'
   let g:airline_symbols.linenr = '⭡'
 
